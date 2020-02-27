@@ -1,39 +1,22 @@
-import React, { Component } from 'react';
-import emoji from 'emoji-dictionary';
+import React from 'react';
+import {default as emojiDictionary } from 'emoji-dictionary';
 import './css/Card.css';
 
-class Card extends Component {
+function Card({ text, emoji, deleteCard, index }) {
 
-  getEmoji = () => {
-    if (this.props.emoji) {
-      return (emoji.getUnicode(this.props.emoji));
-    }
-  }
-
-  deleteCard = (event) => {
-    event.preventDefault();
-    this.props.removeCard(this.props.id, this.props.index)
-  }
-
-  render() {
-    return (
-      <div className="card">
-        <div onClick={this.deleteCard} className='card__delete'>X</div>
-        <article className="card__content">
-          <p className="card__content-text">
-            {this.props.text}
-          </p>
-          <div className="card__content-emoji">
-            {this.getEmoji()}
-          </div>
-        </article>
+  return (
+    <div className="card">
+    <div onClick={() => deleteCard(index)} className='card__delete'>X</div>
+    <article className="card__content">
+      <p className="card__content-text">
+        {text}
+      </p>
+      <div className="card__content-emoji">
+       {emoji ? emojiDictionary.getUnicode(emoji) : null}
       </div>
-    )
-  }
+    </article>
+  </div>
+  )
 }
-
-Card.propTypes = {
-
-};
 
 export default Card;
