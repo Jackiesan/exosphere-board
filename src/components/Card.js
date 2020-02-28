@@ -12,7 +12,7 @@ class Card extends Component {
 
   deleteCard = (event) => {
     event.preventDefault();
-    this.props.removeCard(this.props.id, this.props.index)
+    this.props.removeCard(this.props.index)
   }
 
   render() {
